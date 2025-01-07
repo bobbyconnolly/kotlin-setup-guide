@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotlin Development Environment Setup Guide</title>
+    <style>
+        :root {
+            --primary-color: #7F52FF;
+            --text-color: #2B2B2B;
+            --bg-color: #FFFFFF;
+            --warning-bg: #FFF3E0;
+            --warning-border: #FFB74D;
+            --code-bg: #F5F5F5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+            background: var(--bg-color);
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+                font-size: 14px;
+            }
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.75em;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 0.5em;
+            margin: 1em 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+                margin: 0.5em 0;
+            }
+        }
+
+        .warning-box {
+            background: var(--warning-bg);
+            border: 2px solid var(--warning-border);
+            border-radius: 8px;
+            padding: 1em;
+            margin: 1em 0;
+            overflow-x: auto;
+        }
+
+        .step-container {
+            background: #F8F9FA;
+            border-radius: 8px;
+            padding: 1.5em;
+            margin: 1em 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .step-container {
+                padding: 1em;
+                border-radius: 4px;
+            }
+        }
+
+        code {
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            word-break: break-word;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 1em;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        pre code {
+            padding: 0;
+            background: none;
+        }
+
+        .note {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1em;
+            margin: 1em 0;
+            font-style: italic;
+        }
+
+        .os-specific {
+            margin-left: 1em;
+            padding: 0.5em 0;
+        }
+
+        @media (max-width: 768px) {
+            .os-specific {
+                margin-left: 0;
+            }
+        }
+
+        .image-placeholder {
+            background: #E3E3E3;
+            border: 2px dashed #999;
+            border-radius: 8px;
+            padding: 1em;
+            text-align: center;
+            margin: 1em 0;
+            color: #666;
+        }
+
+        ul, ol {
+            padding-left: 1.5em;
+            margin: 0.5em 0;
+        }
+
+        li {
+            margin: 0.5em 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+            overflow-x: auto;
+            display: block;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5em;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f5;
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 0.25em;
+            }
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1em auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kotlin Development Environment Setup Guide</h1>
+    
+    <div class="warning-box">
+        <strong>⚠️ Important Notes:</strong>
+        <ul>
+            <li>Before modifying any environment variables, please consult with your instructor first.</li>
+            <li>Make sure to install the Community Edition of IntelliJ IDEA (scroll down on the download page).</li>
+            <li>This course uses VSCode keybindings - instructions for setup are included below.</li>
+        </ul>
+    </div>
+
+
+    <div class="step-container">
+        <h2>Prerequisites</h2>
+        <ul>
+            <li>At least 4GB of free disk space</li>
+            <li>Administrative privileges on your computer</li>
+            <li>Stable internet connection</li>
+            <li>Basic familiarity with your operating system</li>
+        </ul>
+    </div>
+
+    <div class="step-container">
+        <h2>Step 1: Installing Java Development Kit (JDK)</h2>
+        <div class="note">
+            While the <a href="https://kotlinlang.org/docs/home.html">official Kotlin documentation</a> doesn't explicitly mention JDK installation, it's a required component for Kotlin development.
+        </div>
+        
+        <h3>Download and Install OpenJDK 17 LTS:</h3>
+        <div class="os-specific">
+            <p><strong>Windows:</strong></p>
+            <ol>
+                <li>Visit <a href="https://adoptium.net/">Adoptium</a></li>
+                <li>Download OpenJDK 17 LTS</li>
+                <li>Run the installer with default settings</li>
+            </ol>
+            <div class="image-placeholder">
+                <img src="adoptium.png" alt="Adoptium website showing OpenJDK 17 LTS download button">
+            </div>
+        </div>
+
+        <div class="os-specific">
+            <p><strong>macOS:</strong></p>
+            <ol>
+                <li>Open Terminal</li>
+                <li>Install Homebrew if not already installed</li>
+                <li>Run: <code>brew install --cask temurin17</code></li>
+            </ol>
+        </div>
+
+        <div class="os-specific">
+            <p><strong>Linux:</strong></p>
+            <ol>
+                <li>Open Terminal</li>
+                <li>Run: <code>sudo apt install openjdk-17-jdk</code> (Ubuntu/Debian)</li>
+                <li>Or use your distribution's package manager</li>
+            </ol>
+        </div>
+
+        <h3>Verify Installation:</h3>
+        <ol>
+            <li>Open Terminal/Command Prompt</li>
+            <li>Run: <code>java -version</code></li>
+            <li>Expected output should show Java 17.x.x</li>
+        </ol>
+        <!-- <div class="image-placeholder">
+            [Image: Terminal screenshot showing successful java -version output]
+        </div> -->
+    </div>
+
+    <div class="step-container">
+        <h2>Step 2: Installing IntelliJ IDEA Community Edition</h2>
+        
+        <div class="warning-box">
+            <strong>🎯 Important:</strong> Make sure to download the <em>Community Edition</em>, not the Ultimate Edition! The Community Edition is free and has everything we need for this course.
+        </div>
+    
+        <h3>Download Instructions:</h3>
+        <ol>
+            <li>Visit the <a href="https://www.jetbrains.com/idea/download/">JetBrains website</a></li>
+            <li>Scroll down past the Ultimate Edition</li>
+            <li>Look for the Community Edition section
+                <div class="image-placeholder">
+                    <img src="intellij.png" alt="JetBrains website showing IntelliJ IDEA Community Edition download button">
+                </div>
+            </li>
+            <li>Select your operating system</li>
+            <li>Click the download button for the Community Edition only</li>
+        </ol>
+    
+        <h3>Installation Steps:</h3>
+        <div class="os-specific">
+            <p><strong>Windows:</strong></p>
+            <ol>
+                <li>Run the downloaded .exe file</li>
+                <li>Accept the default installation location</li>
+                <li>In "Choose Start Menu Folder", keep the default</li>
+                <li>In "Installation Options":
+                    <ul>
+                        <li>✅ 64-bit launcher</li>
+                        <li>✅ Add "Open Folder as Project"</li>
+                        <li>✅ .java, .groovy, .kt, .kts file associations</li>
+                    </ul>
+                </li>
+            </ol>
+            <!-- <div class="image-placeholder">
+                [Image: Windows installation options with recommended checkboxes highlighted]
+            </div> -->
+        </div>
+    
+        <div class="os-specific">
+            <p><strong>macOS:</strong></p>
+            <ol>
+                <li>Open the downloaded .dmg file</li>
+                <li>Drag IntelliJ IDEA CE to the Applications folder</li>
+                <li>Right-click the app and select "Open" (important for first launch)</li>
+            </ol>
+        </div>
+    
+        <div class="os-specific">
+            <p><strong>Linux:</strong></p>
+            <ol>
+                <li>Extract the .tar.gz file:
+                    <br><code>tar -xzf ideaIC-*.tar.gz</code></li>
+                <li>Move to /opt directory:
+                    <br><code>sudo mv idea-IC-* /opt/intellij-idea-ce</code></li>
+                <li>Create desktop entry:
+                    <br><code>ln -s /opt/intellij-idea-ce/bin/idea.sh ~/.local/bin/idea</code></li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="step-container">
+        <h2>Step 3: Configuring VSCode Keybindings</h2>
+        
+        <div class="note">
+            This course standardizes on VSCode keybindings to ensure consistent keyboard shortcuts across all students' environments.
+        </div>
+    
+        <ol>
+            <li>Launch IntelliJ IDEA Community Edition</li>
+            <li>Open Settings/Preferences:
+                <ul>
+                    <li>Windows/Linux: Press <code>Ctrl+Alt+S</code></li>
+                    <li>macOS: Press <code>⌘,</code> (Command+Comma)</li>
+                </ul>
+            </li>
+            <li>In the search bar, type "Keymap"</li>
+            <li>Click on the dropdown next to "Keymap" at the top
+                <!-- <div class="image-placeholder">
+                    [Image: Settings window with Keymap dropdown highlighted]
+                </div> -->
+            </li>
+            <li>Select "VS Code" from the dropdown list</li>
+            <li>Click "Apply" and "OK"</li>
+        </ol>
+    
+        <div class="warning-box">
+            <strong>📝 Reference:</strong> Keep the <a href="https://code.visualstudio.com/docs/getstarted/keybindings">VS Code keybindings reference</a> handy while you're getting used to the shortcuts.
+        </div>
+    
+        <h3>Common VS Code Shortcuts You'll Use:</h3>
+        <div class="os-specific">
+            <table>
+                <tr>
+                    <th>Action</th>
+                    <th>Windows/Linux</th>
+                    <th>macOS</th>
+                </tr>
+                <tr>
+                    <td>Quick Fix/Show Actions</td>
+                    <td><code>Ctrl+.</code></td>
+                    <td><code>⌘.</code></td>
+                </tr>
+                <tr>
+                    <td>Format Document</td>
+                    <td><code>Shift+Alt+F</code></td>
+                    <td><code>⇧⌥F</code></td>
+                </tr>
+                <tr>
+                    <td>Go to Definition</td>
+                    <td><code>F12</code></td>
+                    <td><code>F12</code></td>
+                </tr>
+                <tr>
+                    <td>Find</td>
+                    <td><code>Ctrl+F</code></td>
+                    <td><code>⌘F</code></td>
+                </tr>
+                <tr>
+                    <td>Replace</td>
+                    <td><code>Ctrl+H</code></td>
+                    <td><code>⌘H</code></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="step-container">
+        <h2>Step 4: Verifying Kotlin Plugin</h2>
+        
+        <div class="note">
+            The Kotlin plugin should be pre-installed in recent versions of IntelliJ IDEA, but it's important to verify this.
+        </div>
+    
+        <ol>
+            <li>Open IntelliJ IDEA</li>
+            <li>Access the Plugins section:
+                <div class="os-specific">
+                    <strong>Windows/Linux:</strong>
+                    <ol>
+                        <li>File → Settings</li>
+                        <li>Click Plugins in the left sidebar</li>
+                    </ol>
+                    <strong>macOS:</strong>
+                    <ol>
+                        <li>IntelliJ IDEA → Settings</li>
+                        <li>Click Plugins in the left sidebar</li>
+                    </ol>
+                </div>
+            </li>
+            <li>In the Plugins window:
+                <ol>
+                    <li>Click "Installed" tab</li>
+                    <li>Type "Kotlin" in the search bar</li>
+                    <li>Ensure the Kotlin plugin is listed and enabled</li>
+                </ol>
+                <!-- <div class="image-placeholder">
+                    [Image: Plugins window showing Kotlin plugin installed and enabled]
+                </div> -->
+            </li>
+        </ol>
+    </div>
+    
+    <div class="step-container">
+        <h2>Step 5: Creating Your First Project</h2>
+        
+        <ol>
+            <li>From the welcome screen, click "New Project"
+                <!-- <div class="image-placeholder">
+                    [Image: Welcome screen with "New Project" highlighted]
+                </div> -->
+            </li>
+            <li>In the New Project wizard:
+                <ul>
+                    <li>Select "Kotlin" from the left sidebar</li>
+                    <li>Choose "JVM | IDEA" as project target</li>
+                    <li>Project name: <code>KotlinLab01</code></li>
+                    <li>Location: Choose your preferred directory</li>
+                    <li>Language: Kotlin</li>
+                    <li>Build system: Gradle</li>
+                    <li>JDK: Select JDK 17 (installed earlier)</li>
+                </ul>
+                <!-- <div class="image-placeholder">
+                    [Image: New Project wizard with recommended settings highlighted]
+                </div> -->
+            </li>
+            <li>Click "Create"</li>
+        </ol>
+    
+        <div class="warning-box">
+            <strong>📝 Note:</strong> If JDK 17 isn't listed, click "Add JDK" and navigate to where you installed it:
+            <ul>
+                <li>Windows: Usually <code>C:\Program Files\Java\jdk-17</code></li>
+                <li>macOS: Usually <code>/Library/Java/JavaVirtualMachines/temurin-17.jdk</code></li>
+                <li>Linux: Usually <code>/usr/lib/jvm/java-17-openjdk-amd64</code></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="step-container">
+        <h2>Common Issues & Troubleshooting</h2>
+    
+        <h3>❌ "Invalid JDK Configuration"</h3>
+        <div class="os-specific">
+            <strong>Solution:</strong>
+            <ol>
+                <li>File → Project Structure</li>
+                <li>Under Project Settings → Project:
+                    <ul>
+                        <li>Set SDK to JDK 17</li>
+                        <li>Set Language Level to 17</li>
+                    </ul>
+                </li>
+                <li>Click Apply and OK</li>
+            </ol>
+            <!-- <div class="image-placeholder">
+                [Image: Project Structure dialog with correct JDK settings]
+            </div> -->
+        </div>
+    
+        <h3>❌ "Kotlin Not Configured"</h3>
+        <div class="os-specific">
+            <strong>Solution:</strong>
+            <ol>
+                <li>Click "Configure Kotlin" in the notification</li>
+                <li>Select "Add Kotlin to Build Script"</li>
+                <li>Wait for Gradle sync to complete</li>
+            </ol>
+        </div>
+    
+        <h3>❌ Environment Variable Issues</h3>
+        <div class="warning-box">
+            <strong>⚠️ IMPORTANT:</strong> If you see any errors related to environment variables:
+            <ol>
+                <li>DO NOT modify system environment variables without consulting your instructor</li>
+                <li>Take a screenshot of any error messages</li>
+                <li>Note down what you were doing when the error occurred</li>
+                <li>Contact your instructor with this information</li>
+            </ol>
+        </div>
+    
+        <h3>❌ Gradle Sync Failed</h3>
+        <div class="os-specific">
+            <strong>Try these steps in order:</strong>
+            <ol>
+                <li>Check internet connection</li>
+                <li>File → Invalidate Caches → Invalidate and Restart</li>
+                <li>Delete <code>.gradle</code> folder in project directory</li>
+                <li>Re-sync project: View → Tool Windows → Gradle → Refresh</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="step-container">
+        <h2>Verification Test</h2>
+        
+        <ol>
+            <li>In Project Explorer, right-click <code>src/main/kotlin</code></li>
+            <li>Select New → Kotlin File/Class</li>
+            <li>Name it "HelloWorld"</li>
+            <li>Add this code:
+                <pre><code>fun main() {
+        println("Hello, Kotlin!")
+    }</code></pre>
+            </li>
+            <li>Click the green play button next to <code>main()</code></li>
+            <li>You should see "Hello, Kotlin!" in the output window</li>
+        </ol>
+        <!-- <div class="image-placeholder">
+            [Image: IDE showing HelloWorld.kt with output window]
+        </div> -->
+    
+        <div class="warning-box">
+            If your test fails, please take screenshots of:
+            <ul>
+                <li>Your code</li>
+                <li>Any error messages</li>
+                <li>The Project Explorer view</li>
+            </ul>
+            Send these to your instructor for help.
+        </div>
+    </div>
+
+</body>
+</html>
